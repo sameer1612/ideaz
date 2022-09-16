@@ -1,0 +1,44 @@
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+
+  .idea {
+    border-radius: 1em;
+    background: aliceblue;
+    text-decoration: none;
+    color: inherit;
+
+
+    h5 {
+      color: steelblue;
+    }
+
+    small {
+      color: #354d4f;
+    }
+
+    .btn-outline-danger {
+      padding: 6px 10px;
+    }
+
+    &:hover {
+      transform: scale(100.5%);
+      cursor: pointer;
+    }
+  }
+}
+
+
+.dark {
+  .form-control {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .idea {
+    background: rgba(0, 0, 0, 0.1);
+
+    small {
+      color: #999;
+    }
+  }
+}

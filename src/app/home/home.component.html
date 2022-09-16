@@ -1,0 +1,47 @@
+<div [ngClass]="{'dark': this.theme === 'dark'}" class="wrapper p-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="m-0 p-0">Idea Board</h1>
+    <button (click)="toggleTheme()" [ngClass]="this.theme === 'dark' ? 'btn-dark' : 'btn-light'"
+            class="btn btn-theme shadow-sm">
+      <i *ngIf="theme === 'light'" class="bi bi-moon"></i>
+      <i *ngIf="theme === 'dark'" class="bi bi-sun"></i>
+    </button>
+  </div>
+
+  <form (ngSubmit)="createNewIdea()" [formGroup]="newIdeaForm">
+    <input class="form-control mb-2" formControlName="title"
+           placeholder="Title"
+           type="text">
+    <input class="form-control mb-3" formControlName="body"
+           placeholder="Body"
+           type="text">
+    <button [disabled]="!newIdeaForm.valid" class="btn btn-outline-info w-100" type="submit">Submit</button>
+  </form>
+
+  <hr class="text-info my-5">
+
+  <div class="ideas-list">
+    <div *ngIf="loading; else elseBlock">
+      <p class="text-center">Loading...</p>
+    </div>
+
+    <ng-template #elseBlock>
+      <div *ngFor="let idea of ideas; index as i;">
+        <a [state]="{idea}" class="idea card p-3 mb-2" routerLink="/details">
+          <div class="row pe-3">
+            <div class="col-11">
+              <h5 class="">{{ idea.title }}</h5>
+              <small class=""> {{ idea.body }} </small>
+            </div>
+            <div class="col-1">
+              <button (click)="deleteIdea(idea)" class="btn rounded-circle btn-outline-danger">
+                <i class="bi bi-trash3"></i>
+              </button>
+            </div>
+          </div>
+        </a>
+      </div>
+    </ng-template>
+  </div>
+</div>
+

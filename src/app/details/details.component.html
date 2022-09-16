@@ -1,0 +1,31 @@
+<div *ngIf="idea" class="container p-4">
+  <h1 class="text-secondary">
+    Edit idea
+  </h1>
+  <hr>
+  <div *ngIf="editing; else elseBlock">
+    <form (ngSubmit)="updateIdea()" [formGroup]="editIdeaForm">
+      <input class="form-control mb-2" formControlName="title"
+             placeholder="Title"
+             type="text">
+      <input class="form-control mb-3" formControlName="body"
+             placeholder="Body"
+             type="text">
+      <button [disabled]="!editIdeaForm.valid" class="btn btn-outline-info w-100" type="submit">Update</button>
+    </form>
+  </div>
+
+  <ng-template #elseBlock>
+    <h5 class="">
+      {{idea.title}}
+    </h5>
+
+    <p class="lead text-muted">
+      {{idea.body}}
+    </p>
+
+    <button (click)="editIdea()" class="btn btn-outline-info">
+      Edit
+    </button>
+  </ng-template>
+</div>
